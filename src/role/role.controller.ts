@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put, Query, Headers } from "@nestjs/common";
 import { RoleService } from "./role.service";
 import { CreateRoleDto } from "./dto/create-role.dto";
 import { UserRoleService } from "./user-role.service";
@@ -30,7 +30,7 @@ export class RoleController {
     return this.userRoleService.getAll()
   }
   @Put('/user-role')
-  changeRole(@Body() dto: ChangeRoleDto) {
-    return this.userRoleService.changeRole(dto)
+  changeRole(@Body() dto: ChangeRoleDto, @Headers('Authorization') authorization: string) {
+    return this.userRoleService.changeRole(dto, authorization)
   }
 }

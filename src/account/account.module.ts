@@ -27,7 +27,7 @@ export class AccountModule implements NestModule{
       .apply(RequestAccountMiddleware)
       .forRoutes({
         path: 'account/profile',
-        method: RequestMethod.ALL
+        method: RequestMethod.ALL,
       })
   }
 }

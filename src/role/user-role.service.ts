@@ -6,12 +6,14 @@ import { CreateUserRoleDto } from "./dto/create-user-role.dto";
 import { User, UserDocument } from "../account/schemas/user.schema";
 import { Role, RoleDocument } from "./schemas/role.schema";
 import { ChangeRoleDto } from "./dto/change-role.dto";
+import { TokenService } from "../token/token.service";
 
 @Injectable()
 export class UserRoleService {
   constructor(@InjectModel(UserRole.name) private userRoleModel: Model<UserRoleDocument>,
               @InjectModel(User.name) private userModel: Model<UserDocument>,
-              @InjectModel(Role.name) private roleModel: Model<RoleDocument>) {}
+              @InjectModel(Role.name) private roleModel: Model<RoleDocument>,
+              private readonly tokenService: TokenService) {}
   async create(dto: CreateUserRoleDto) {
     if(!dto) {
       throw new HttpException('Invalid data', HttpStatus.BAD_REQUEST)
@@ -28,7 +30,20 @@ export class UserRoleService {
     const data = await this.userRoleModel.find()
     return data
   }
-  async changeRole(dto: ChangeRoleDto) {
+  async changeRole(dto: ChangeRoleDto, authorization) {
+      const token = authorization.split(' ')[1]
+      const tokenData = await this.tokenService.findToken(token)
+      if(!tokenData) {
+        throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED)
+      }
+      const userRoleData = await this.userRoleModel.findOne({user_id: tokenData})
+      if(!userRoleData) {
+        throw new HttpException('Invalid role', HttpStatus.UNAUTHORIZED)
+      }
+      const roleData = await this.roleModel.findById(userRoleData.role_id)
+      if(roleData.value != 'admin') {
+        throw new HttpException('Access is Denied', HttpStatus.BAD_REQUEST)
+      }
       const findUser = await this.userModel.findById(dto.user_id)
       if(!findUser) {
         throw new HttpException('Invalid user id', HttpStatus.BAD_REQUEST)

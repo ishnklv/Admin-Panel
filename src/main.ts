@@ -9,9 +9,10 @@ const accessLogStream = fs.createStream('access.log', {
   path: path.join(__dirname, 'logs')
 })
 
+export const PORT = process.env.PORT || 5000
+
 const start = async () => {
   try{
-    const PORT = process.env.PORT || 5000
     const app = await NestFactory.create(AppModule)
     app.use(morgan('combined', {stream: accessLogStream}))
     await app.listen(PORT, () => console.log('SERVER STARTED ON PORT = ' + PORT))

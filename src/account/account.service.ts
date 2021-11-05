@@ -14,6 +14,7 @@ import { ChangePasswordDto } from "./dto/change-password.dto";
 import { ResetPasswordDto } from "./dto/reset-password.dto";
 import { Role, RoleDocument } from "../role/schemas/role.schema";
 import { UserRole, UserRoleDocument } from "../role/schemas/user-role.schema";
+import { PORT } from "../main";
 
 @Injectable()
 export class AccountService {
@@ -85,7 +86,7 @@ export class AccountService {
     if(!findUser) {
       throw new HttpException('Invalid Email', HttpStatus.BAD_REQUEST)
     }
-    const link = `http://localhost:5000/account/reset-password/${findUser.activationLink}`
+    const link = `http://localhost:${PORT}/account/reset-password/${findUser.activationLink}`
     await this.emailService.resetPassword(email, link)
   }
   async changePassword(dto: ChangePasswordDto, link) {

@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import * as nodemailer from 'nodemailer'
+import { PORT } from "../main";
 
 @Injectable()
 export class EmailService {
@@ -17,12 +18,12 @@ export class EmailService {
     await transporter.sendMail({
       from: 'aktanishenkulov@gmail.com',
       to,
-      subject: `Activation on http://localhost:5000`,
+      subject: `Activation on http://localhost:${PORT}`,
       text: '',
       html: `
         <div>
             <h1>To activate, follow the link below</h1>
-            <a href="http://localhost:5000/account/activate/${link}">http://localhost:5000/account/activate/${link}</a>
+            <a href="http://localhost:${PORT}/account/activate/${link}">http://localhost:${PORT}/account/activate/${link}</a>
         </div>
       `
     })
@@ -41,7 +42,7 @@ export class EmailService {
     await transporter.sendMail({
       from: 'aktanishenkulov@gmail.com',
       to,
-      subject: `Reset Password on http://localhost:5000`,
+      subject: `Reset Password on http://localhost:${PORT}`,
       text: '',
       html: `
         <div>

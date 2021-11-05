@@ -24,7 +24,7 @@ $ npm run start:prod
 ```
 
 # Endpoints
-<b>POST</b> Signup - ``http://localhost:5000/account/signup``
+<b>POST</b> Signup - ``/account/signup``
 
 payload: 
 ``` json
@@ -36,7 +36,7 @@ payload:
     }
 ```
 
-<b>POST</b> Signin - ``http://localhost:5000/account/signin``
+<b>POST</b> Signin - ``/account/signin``
 
 payload:
 ``` json
@@ -47,7 +47,7 @@ payload:
     }
 ```
 
-<b>GET</b> Profile - ``http://localhost:5000/account/profile``
+<b>GET</b> Profile - ``/account/profile``
 
 payload:
 ```
@@ -57,7 +57,7 @@ payload:
     }
 ```
 
-<b>POST</b> Reset Password - ``http://localhost:5000/account/reset-password``
+<b>POST</b> Reset Password - ``/account/reset-password``
 
 payload:
 ``` json
@@ -66,7 +66,7 @@ payload:
     }
 ```
 
-<b>POST</b> Reset Password - ``http://localhost:5000/account/:token``
+<b>POST</b> Reset Password - ``/account/:token``
 
 payload:
 ``` json
@@ -76,7 +76,7 @@ payload:
     }
 ```
 
-<b>POST</b> Create Role - ``http://localhost:5000/account/role``
+<b>POST</b> Create Role - ``/account/role``
 
 payload:
 ``` json
@@ -85,10 +85,10 @@ payload:
     }
 ```
 
-<b>GET</b> Get All Role - ``http://localhost:5000/account/role``
+<b>GET</b> Get All Role - ``/account/role``
 
 
-<b>POST</b> Create User Role - ``http://localhost:5000/account/role/user-role``
+<b>POST</b> Create User Role - ``/account/role/user-role``
 
 payload:
 ``` json
@@ -98,7 +98,7 @@ payload:
     }
 ```
 
-<b>PUT</b> Create User Role - ``http://localhost:5000/account/role/user-role``
+<b>PUT</b> Create User Role - ``/account/role/user-role``
 
 payload:
 ``` json

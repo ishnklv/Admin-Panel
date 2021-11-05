@@ -98,6 +98,7 @@ payload:
 ```
 
 <b>PUT</b> Change User Role - ``/account/role/user-role``
+
 Headers:
 ```
     {

@@ -98,6 +98,12 @@ payload:
 ```
 
 <b>PUT</b> Change User Role - ``/account/role/user-role``
+Headers:
+```
+    {
+        Authorization: Bearer :token
+    }
+```
 
 payload:
 ``` json

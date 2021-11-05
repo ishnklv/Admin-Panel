@@ -85,7 +85,7 @@ payload:
     }
 ```
 
-<b>GET</b> Create Role - ``http://localhost:5000/account/role``
+<b>GET</b> Get All Role - ``http://localhost:5000/account/role``
 
 
 <b>POST</b> Create User Role - ``http://localhost:5000/account/role/user-role``

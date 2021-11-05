@@ -49,9 +49,8 @@ payload:
 
 <b>GET</b> Profile - ``/account/profile``
 
-payload:
+Headers:
 ```
-    Headers
     {
         "Authorization": "Bearer :token"
     }

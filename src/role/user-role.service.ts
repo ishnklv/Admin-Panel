@@ -31,6 +31,9 @@ export class UserRoleService {
     return data
   }
   async changeRole(dto: ChangeRoleDto, authorization) {
+      if(!authorization) {
+        throw new HttpException('Enter Authorization Bearer Token', HttpStatus.BAD_REQUEST)
+      }
       const token = authorization.split(' ')[1]
       const tokenData = await this.tokenService.findToken(token)
       if(!tokenData) {

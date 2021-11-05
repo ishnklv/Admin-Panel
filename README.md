@@ -97,7 +97,7 @@ payload:
     }
 ```
 
-<b>PUT</b> Create User Role - ``/account/role/user-role``
+<b>PUT</b> Change User Role - ``/account/role/user-role``
 
 payload:
 ``` json

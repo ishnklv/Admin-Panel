@@ -72,6 +72,10 @@ export class AccountService {
   async profile(headers) {
     const {authorization} = headers
     const token = authorization.split(' ')[1]
+    const bearer = authorization.split(' ')[0]
+    if(bearer == '' || bearer != 'Bearer') {
+      throw new HttpException('Invalid Bearer Token', HttpStatus.BAD_REQUEST)
+    }
     const findUserId = await this.tokenService.findToken(token)
     const findUser = await this.userModel.findById(findUserId)
     if(!findUser) {

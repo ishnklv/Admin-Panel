@@ -8,6 +8,7 @@ import { TokenService } from "./token.service";
     MongooseModule.forFeature([{name: Token.name, schema: TokenSchema}])
   ],
   controllers: [],
-  providers: [TokenService]
+  providers: [TokenService],
+  exports: [TokenService]
 })
 export class TokenModule {}

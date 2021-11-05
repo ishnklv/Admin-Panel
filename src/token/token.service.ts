@@ -31,10 +31,10 @@ export class TokenService {
     return token
   }
   async findToken(token) {
-    const tokenData = await this.tokenModel.findOne({refreshToken: token})
-    if(!tokenData) {
-      throw new HttpException('Invalid Token', HttpStatus.UNAUTHORIZED)
+    const findToken = jwt.verify(token, 'jwt_access_2003')
+    if(!findToken) {
+      throw new HttpException('Invalid Access Token', HttpStatus.UNAUTHORIZED)
     }
-    return tokenData.userId
+    return findToken.id
   }
 }
